@@ -19,6 +19,8 @@
 
         <main>
             <h2>Risultati della ricerca</h2>
+<!-- al max restituisce 20 risultati: cambiare? -->
+            <div class="quantity" v-if="searchByTermResults !== ''">Numero di risultati ottenuti: {{searchByTermResults.length}}</div>
             <ul class="results">
                 <li v-for="movie in searchByTermResults">
                     <div>
