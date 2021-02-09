@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+
+    <div id="root">
+        <header>
+            <input type="text" name="searchByTerm" id="searchByTerm" placeholder="Scrivi qui il termine che vuoi cercare" v-model="searchByTerm" @keyup.enter="queryDatabase">
+            <button @click="queryDatabase">Invia</button>
+        </header>
+
+        <main>
+            <h2>Risultati della ricerca</h2>
+            <ul class="results">
+                <li v-for="movie in searchByTermResults">
+                    <div>
+                        <h3>{{movie.title}}</h3>
+                        <span class="lang">{{movie.original_language}} / </span>
+                        <span class="release">{{movie.release_date}} / </span>
+                        <span class="vote">{{movie.vote_average}}</span>
+                        <div class="description">{{movie.overview}}</div>
+                    </div>
+                </li>
+            </ul>
+        </main>
+    </div>
+    
+    <script src="./js/main.js"></script>
+</body>
+</html>
