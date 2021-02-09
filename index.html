@@ -25,6 +25,7 @@
                 <li v-for="movie in searchByTermResults">
                     <div>
                         <h3>{{movie.title}}</h3>
+                        <div class="original">{{movie.original_title}}</div>
                         <span class="lang">{{movie.original_language}} / </span>
                         <span class="release">{{movie.release_date}} / </span>
                         <span class="vote">{{movie.vote_average}}</span>
