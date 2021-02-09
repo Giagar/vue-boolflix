@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/style-t.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+
+    <div id="root">
+        <header>
+            <input type="text" name="searchByTerm" id="searchByTerm" placeholder="Scrivi qui" v-model="searchByTerm" @keyup.enter="handleQuery()">
+            <button @click="handleQuery">Invia</button>
+        </header>
+
+        <main>
+            <div class="results">
+                <h2>Results</h2>
+                <div class="quantity" v-if="queryResults !== ''">Numero di risultati corrispondenti alla tua ricerca: {{queryResults.length}}</div>
+                <ul class="results">
+                    <li v-for="movie in queryResults">{{movie.title}}</li>
+                </ul>
+                <div class="pages-controls" v-if="totalPages > 1">
+                    <button class="prev" :disabled="page === 1" @click="prevPage">prev</button>
+                    <span class="current">Current page: {{page}}</span>
+                    <button class="next" :disabled="page === totalPages" @click="nextPage">next</button>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="./js/main-t.js"></script>
+</body>
+</html>
