@@ -13,8 +13,8 @@
 
     <div id="root">
         <header>
-            <input type="text" name="searchByTerm" id="searchByTerm" placeholder="Scrivi qui" v-model="searchByTerm" @keyup.enter="handleQuery">
-            <button @click="handleQuery">Invia</button>
+            <input type="text" name="searchByTerm" id="searchByTerm" placeholder="Scrivi qui" v-model="searchByTerm" @keyup.enter="resetQueryResults(); handleQuery()">
+            <button @click="resetQueryResults(); handleQuery()">Invia</button>
         </header>
 
         <main>
