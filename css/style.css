@@ -48,40 +48,30 @@ main .movie-container {
     margin: 5px;
     height: 280px;
     width: 187px;
+    border: 1px solid #D6D6D6;
 }
 
 main .movie-container img.poster {
     z-index: 0;
-    height: 280px;
-    width: 187px;
+    height: 278px;
+    width: 185px;
 }
 
 main .movie-container .movie-data {
-    height: 280px;
-    width: 187px;
+    height: 278px;
+    width: 185px;
     position: absolute;
     z-index: 1;
     top: 0;
     left: 0;
     background-color: hsl(0, 0%, 0%);
     color: white;
-    /* display: none; */
+    display: none;
 }
-/* 
-main .movie-container img :hover .movie-data {
-    display: block !important;
-} */
 
-main .movie-container img, main .movie-container .movie-data {
-    border: 1px solid #D6D6D6;
+main .movie-container:hover .movie-data {
+    display: block;
 }
-/* 
-.score-container {
-    width: 100px;
-    height: 30px;
-    line-height: 30px;
-    outline: 1px dotted lightblue;
-} */
 
 img.language.flag {
     width: 25px;
