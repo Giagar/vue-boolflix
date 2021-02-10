@@ -26,10 +26,16 @@
                         <img class="poster" :src="'https://image.tmdb.org/t/p/w185/' + movie.poster_path" alt="cover">
 
                         <div class="movie-data">
+                            <!-- !!!! title  e original presentano la condizione perché le alcune proprietà dei movie hanno nomi diversi rispetto a quelle corrispondenti delle serie tv !!!! -->
+
                             <!-- title -->
-                            <h2 class="title" v-if="movie.title">{{movie.title}}</h2>
-                            <h2 class="title" v-else-if="movie.name">{{movie.name}}</h2>
+                            <div class="title" v-if="movie.title"><strong>Titolo:</strong> {{movie.title}}</div>
+                            <div class="title" v-else-if="movie.name"><strong>Titolo:</strong> {{movie.name}}</div>
                             <!-- /title -->
+
+                            <div class="original">
+                                <strong>Titolo originale:</strong>{{movie.original_title ? movie.original_title : movie.original_name}}
+                            </div>
     
                             <!-- language -->
 <!-- ?? come posso verificare che src sia falsa? cioè che movie.original_language nn corrisponda a nessun percorso esistente ?? -->
@@ -38,7 +44,11 @@
                             <!-- /language -->
     
                             <div class="score-container">
-                                <i v-for="star in 5" :class="'vote fa-star ' + (star <= Math.ceil(movie.vote_average / 2) ? 'fas' : 'far')"></i>
+                                <strong>Voto: </strong><i v-for="star in 5" :class="'vote fa-star ' + (star <= Math.ceil(movie.vote_average / 2) ? 'fas' : 'far')"></i>
+                            </div>
+
+                            <div class="description">
+                                <strong>Overview: </strong>{{movie.overview}}
                             </div>
                         </div>
                 </li>

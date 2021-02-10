@@ -75,13 +75,13 @@ main .movie-container img :hover .movie-data {
 main .movie-container img, main .movie-container .movie-data {
     border: 1px solid #D6D6D6;
 }
-
+/* 
 .score-container {
     width: 100px;
     height: 30px;
     line-height: 30px;
     outline: 1px dotted lightblue;
-}
+} */
 
 img.language.flag {
     width: 25px;
