@@ -4,6 +4,7 @@ new Vue({
     data: {
         searchByTerm: "",
         searchByTermResults: "",
+        // flag: "",
     },
 
     methods: {
