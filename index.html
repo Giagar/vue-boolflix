@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css'/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css" integrity="sha512-Cv93isQdFwaKBV+Z4X8kaVBYWHST58Xb/jVOcV9aRsGSArZsgAnFIhMpDoMDcFNoUtday1hdjn0nGp3+KZyyFw==" crossorigin="anonymous" />
     <link rel="stylesheet" href="./css/style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
@@ -14,6 +15,7 @@
 
     <div id="root">
         <header>
+            <!-- <span v-else="" class="lang">{{movie.original_language}} / </span> -->
             <input type="text" name="searchByTerm" id="searchByTerm" placeholder="Scrivi qui il termine che vuoi cercare" v-model="searchByTerm" @keyup.enter="queryDatabase">
             <button @click="queryDatabase">Invia</button>
         </header>
@@ -27,7 +29,12 @@
                     <div>
                         <h3>{{movie.title}}</h3>
                         <div class="original">{{movie.original_title}}</div>
-                        <span class="lang">{{movie.original_language}} / </span>
+                        
+                        <!-- language -->
+                        <span v-if="countryFlags(movie.original_language)" :class="'lang flag-icon flag-icon-' + countryFlags(movie.original_language)"></span>
+                        <span v-else="" class="lang">{{movie.original_language}}</span>
+                        <!-- /language -->
+
                         <div class="score-container">
                             <i class="vote fas fa-star" v-for="star in (Math.ceil(movie.vote_average / 2))"></i>
                         </div>
