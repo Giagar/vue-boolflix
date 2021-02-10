@@ -33,10 +33,8 @@
                         <h3 class="title" v-else-if="movie.name">{{movie.name}}</h3>
                         <!-- /title -->
 
-                        <img :src="'https://image.tmdb.org/t/p/w342/' + movie.backdrop_path" alt="cover">
+                        <img :src="'https://image.tmdb.org/t/p/w342/' + movie.poster_path" alt="cover">
 
-
-                        
                         <!-- language -->
                         <span v-if="countryFlags(movie.original_language)" :class="'lang flag-icon flag-icon-' + countryFlags(movie.original_language)"></span>
                         <span v-else="" class="lang">{{movie.original_language}}</span>
