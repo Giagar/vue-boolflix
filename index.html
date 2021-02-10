@@ -33,7 +33,7 @@
                             <div class="title" v-else-if="movie.name"><strong>Titolo:</strong> {{movie.name}}</div>
                             <!-- /title -->
 
-                            <div class="original">
+                            <div class="original" v-if="movie.original_title !== movie.title || movie.original_name !== movie.name">
                                 <strong>Titolo originale:</strong>{{movie.original_title ? movie.original_title : movie.original_name}}
                             </div>
     
