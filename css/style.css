@@ -1,3 +1,81 @@
+/* COMMONS & UTILITIES */
+html {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+* {box-sizing: border-box; margin: 0; padding: 0;}
+
+
+/* STYLE */
+/* _header */
+header {
+    height: 70px;
+    /* line-height: 70px; */
+    background-color: hsl(0, 0%, 0%);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 25px;
+}
+
+.logo {
+    color: red;
+}
+
+header input {
+    padding: 4px 5px;
+}
+
+/* _main */
+main {
+    width: 100vw;
+    background-color: #434343;
+    min-height: calc(100vh - 70px);
+}
+
+main ul.results {
+    list-style: none;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    padding: 5px 20px;
+}
+
+main .movie-container {
+    position: relative;
+    margin: 5px;
+    height: 280px;
+    width: 187px;
+}
+
+main .movie-container img.poster {
+    z-index: 0;
+    height: 280px;
+    width: 187px;
+}
+
+main .movie-container .movie-data {
+    height: 280px;
+    width: 187px;
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: hsl(0, 0%, 0%);
+    color: white;
+    /* display: none; */
+}
+/* 
+main .movie-container img :hover .movie-data {
+    display: block !important;
+} */
+
+main .movie-container img, main .movie-container .movie-data {
+    border: 1px solid #D6D6D6;
+}
+
 .score-container {
     width: 100px;
     height: 30px;
