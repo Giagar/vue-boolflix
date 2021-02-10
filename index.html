@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css'/>
     <link rel="stylesheet" href="./css/style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
@@ -27,7 +28,9 @@
                         <h3>{{movie.title}}</h3>
                         <div class="original">{{movie.original_title}}</div>
                         <span class="lang">{{movie.original_language}} / </span>
-                        <span class="vote">{{movie.vote_average}}</span>
+                        <div class="score-container">
+                            <i class="vote fas fa-star" v-for="star in (Math.ceil(movie.vote_average / 2))"></i>
+                        </div>
                     </div>
                 </li>
             </ul>

@@ -13,13 +13,13 @@
 
     <div id="root">
         <header>
-            <input type="text" name="searchByTerm" id="searchByTerm" placeholder="Scrivi qui" v-model="searchByTerm" @keyup.enter="handleQuery()">
-            <button @click="handleQuery">Invia</button>
+            <input type="text" name="searchByTerm" id="searchByTerm" placeholder="Scrivi qui" v-model="searchByTerm" @keyup.enter="copyQuery(); resetQuery(); handleQuery()">
+            <button @click="copyQuery(); resetQuery(); handleQuery()" :disabled="searchByTerm === ''">Invia</button>
         </header>
 
         <main>
             <div class="results">
-                <h2>Results</h2>
+                <h2>Results <span v-if="queryTerm !== ''">for "{{queryTerm}}"</span></h2>
                 <div class="quantity" v-if="queryResults !== ''">Numero di risultati corrispondenti alla tua ricerca: {{queryResults.length}}</div>
                 <ul class="results">
                     <li v-for="movie in queryResults">{{movie.title}}</li>
