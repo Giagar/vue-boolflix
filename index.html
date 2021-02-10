@@ -32,7 +32,9 @@
                             <!-- /title -->
     
                             <!-- language -->
-                            <img class="language flag" :src="'./flags/' + (movie.original_language === 'en' ? 'gb' : movie.original_language) + '.svg'" :alt="movie.original_language">
+<!-- ?? come posso verificare che src sia falsa? cioè che movie.original_language nn corrisponda a nessun percorso esistente ?? -->
+                            <!-- <img class="language flag" :src="'./flags/' + (movie.original_language === 'en' ? 'gb' : movie.original_language) + '.svg'" :alt="movie.original_language"> -->
+                            <span :class="'language flag flag-icon flag-icon-' + (movie.original_language === 'en' ? 'gb' : movie.original_language)"></span>
                             <!-- /language -->
     
                             <div class="score-container">
