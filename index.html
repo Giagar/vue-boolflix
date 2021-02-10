@@ -36,7 +36,7 @@
                             <!-- /language -->
     
                             <div class="score-container">
-                                <i class="vote fas fa-star" v-for="star in (Math.ceil(movie.vote_average / 2))"></i>
+                                <i v-for="star in 5" :class="'vote fa-star ' + (star <= Math.ceil(movie.vote_average / 2) ? 'fas' : 'far')"></i>
                             </div>
                         </div>
                 </li>
