@@ -4,3 +4,7 @@
     line-height: 30px;
     outline: 1px dotted lightblue;
 }
+
+img.language.flag {
+    width: 25px;
+}

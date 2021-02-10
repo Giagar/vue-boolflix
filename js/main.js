@@ -25,22 +25,6 @@ new Vue({
             })
 
         },
-
-        // converting a language into a flag code
-        countryFlags(value) {
-            console.log("value", value);
-            let result = "";
-
-            switch(value) {
-                case "en":
-                    result = "us";
-                    break;
-                default:
-                    result = false;
-            }
-            console.log("result", result);
-            return result;
-        }
     },
 
 })
