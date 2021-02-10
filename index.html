@@ -28,7 +28,8 @@
                 <li v-for="movie in searchByTermResults">
                     <div>
                         <h3>{{movie.title}}</h3>
-                        <div class="original">{{movie.original_title}}</div>
+                        <div class="title" v-if="movie.title">{{movie.title}}</div>
+                        <div class="title" v-else-if="movie.name">{{movie.name}}</div>
                         
                         <!-- language -->
                         <span v-if="countryFlags(movie.original_language)" :class="'lang flag-icon flag-icon-' + countryFlags(movie.original_language)"></span>
