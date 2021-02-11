@@ -23,7 +23,8 @@
             <!-- <div class="quantity" v-if="searchByTermResults !== ''">Numero di risultati ottenuti: {{searchByTermResults.length}}</div> -->
             <ul class="results">
                 <li class="movie-container" v-for="movie in searchByTermResults">
-                        <img class="poster" :src="'https://image.tmdb.org/t/p/w185/' + movie.poster_path" alt="cover">
+                        <!-- <img class="poster" :src="'https://image.tmdb.org/t/p/w185/' + movie.poster_path" alt="cover"> -->
+                        <img class="poster" :src="movie.poster_path.includes('img-fallback') ? (movie.poster_path) : ('https://image.tmdb.org/t/p/w185/' + movie.poster_path)" alt="cover">
 
                         <div class="movie-data">
                             <!-- !!!! title  e original presentano la condizione perché le alcune proprietà dei movie hanno nomi diversi rispetto a quelle corrispondenti delle serie tv !!!! -->
@@ -38,9 +39,12 @@
                             </div>
     
                             <!-- language -->
+                            <div class="language">
+                                <strong>Lingua: </strong>
+                                <img class="flag" :src="'./flags/' + (movie.original_language === 'en' ? 'gb' : movie.original_language) + '.svg'" :alt="movie.original_language">
+                                <!-- <span :class="'flag flag-icon flag-icon-' + (movie.original_language === 'en' ? 'gb' : movie.original_language)">{{movie.original_language}}</span> -->
+                            </div>
 <!-- ?? come posso verificare che src sia falsa? cioè che movie.original_language nn corrisponda a nessun percorso esistente ?? -->
-                            <!-- <img class="language flag" :src="'./flags/' + (movie.original_language === 'en' ? 'gb' : movie.original_language) + '.svg'" :alt="movie.original_language"> -->
-                            <span :class="'language flag flag-icon flag-icon-' + (movie.original_language === 'en' ? 'gb' : movie.original_language)">{{movie.original_language}}</span>
                             <!-- /language -->
     
                             <div class="score-container">

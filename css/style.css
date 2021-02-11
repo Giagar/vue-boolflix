@@ -61,18 +61,37 @@ main .movie-container .movie-data {
     height: 278px;
     width: 185px;
     position: absolute;
-    z-index: 1;
+    /* z-index: 1; */
     top: 0;
     left: 0;
     background-color: hsl(0, 0%, 0%);
     color: white;
     display: none;
+    /* display: block; */
+/* ?? nn rispetta padding bottom e .description arriva fino alla fine di .movie-data ?? */
+    padding: 25px 10px;
+    overflow-y: hidden;
 }
 
 main .movie-container:hover .movie-data {
     display: block;
+    overflow-y: hidden;
 }
 
-img.language.flag {
-    width: 25px;
+main .movie-container .movie-data > div {
+    line-height: 1.4;
+}
+
+main .movie-container .movie-data .score-container i {
+    color: #FFBD00;
+}
+
+main .movie-container .movie-data .description {
+    /* max-height: 100px; */
+    outline: 1px dotted lightblue;
+    overflow-y: hidden;
+}
+
+.language .flag {
+    width: 15px;
 }

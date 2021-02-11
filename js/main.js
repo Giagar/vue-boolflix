@@ -19,6 +19,14 @@ new Vue({
                 
                 let result = res1.data.results.concat(res2.data.results); // array
 
+                // check for missing poster images and substitution with a default cover img
+                result.forEach(obj => {
+// ?? va bene passare true per nn fargli fare niente - (l'assegnazione funziona, ma il percorso è sbagliato) ?? 
+                    obj.poster_path ? true : obj.poster_path = "./img-fallback/default-cover.jpg"
+                });
+
+                console.log(result);
+
                 this.searchByTermResults = result;
 
                 // empty the search field
