@@ -31,6 +31,7 @@ main {
     width: 100vw;
     background-color: #434343;
     min-height: calc(100vh - 70px);
+    overflow-x: scroll; /* solo per scorrimento orizzontale */
 }
 
 main ul.results {
@@ -39,7 +40,7 @@ main ul.results {
     margin: 0 auto;
     display: flex;
     justify-content: flex-start;
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; // solo per scorrimento verticale */ 
     padding: 5px 20px;
 }
 
