@@ -21,23 +21,27 @@ new Vue({
                 axios.get("https://api.themoviedb.org/3/search/tv?api_key=ce3b6870fdfccf78b80dcdd8f1af7e7c&query=" + this.searchByTerm),
 
                 // get movie genres list
-                axios.get("https://api.themoviedb.org/3/genre/movie/list?api_key=ce3b6870fdfccf78b80dcdd8f1af7e7c&language=en-US")
+                axios.get("https://api.themoviedb.org/3/genre/movie/list?api_key=ce3b6870fdfccf78b80dcdd8f1af7e7c&language=en-US"),
                 // get series genres list
-                // axios.get("https://api.themoviedb.org/3/genre/movie/list?api_key=ce3b6870fdfccf78b80dcdd8f1af7e7c&language=en-US")
+                axios.get("https://api.themoviedb.org/3/genre/tv/list?api_key=ce3b6870fdfccf78b80dcdd8f1af7e7c&language=en-US")
             ])
-            .then(([resMovie, resTv, resMovieGenresList]) => {
+            .then(([resMovie, resTv, resMovieGenresList, resTvGenresList]) => {
                 
-                let result = resMovie.data.results.concat(resTv.data.results); // array
-
-                this.movieGenresList = resMovieGenresList.data.genres;
-
-                // get genres
+                let resAll = resMovie.data.results.concat(resTv.data.results); // array
                 
+                // genres: from codes to names
+                let resAllGenres = [...resMovieGenresList.data.genres, ...resTvGenresList.data.genres];
 
-                console.log(this.movieGenresList);
-
-
-
+                resAll.forEach(movie => {
+                    movie.genre_ids = movie.genre_ids.map((genreCodes, index, array) => {
+                        if(movie.genre_ids === []) {
+                            movie.genre_ids = "No genre specified";
+                        } else {
+                            return "genres", resAllGenres.filter(genreNames => genreCodes === genreNames.id)[0].name;
+                        }
+                    })
+                })
+                
                 // result.map(movie => {
                 //     axios
                 //     .get("https://api.themoviedb.org/3/movie/75780/credits?api_key=ce3b6870fdfccf78b80dcdd8f1af7e7c")
@@ -52,17 +56,16 @@ new Vue({
                 
 
                 // checking for missing poster images and setting a default cover img
-                result.forEach(obj => {
+                resAll.forEach(obj => {
 // ?? va bene passare true per nn fargli fare niente - (l'assegnazione funziona, ma il percorso è sbagliato) ?? 
                     obj.poster_path ? true : obj.poster_path = "./img-fallback/default-cover.jpg"
                 });
 
-                this.searchByTermResults = result;
+                this.searchByTermResults = resAll;
 
                 // empty the search field
                 this.searchByTerm = "";
 
-                // console.log(result)
             })
 
         },
@@ -94,26 +97,12 @@ new Vue({
             })
         },
 
-        // displayGenres(movie) {
-        //     let result =  movie.genre_ids.map(genre => {
-        //         return this.movieGenresList.filter(obj => {
-        //             return obj.id === genre
-        //         })[0].name
-        //     });
-        //     console.log(result);
-        //     return result;
-
-        // },
-
-        // cut the results (strings) to a max length
+// !! cut the results (strings) to a max length !!
 
     },
 
     mounted: function() {
-        // get movie's genres list
+// ?? get movie's genres list and actors here ??
         
     },
-    filters: {
-    }
-
 })
