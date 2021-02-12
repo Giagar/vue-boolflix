@@ -22,7 +22,7 @@
         <main>
             <!-- <div class="quantity" v-if="searchByTermResults !== ''">Numero di risultati ottenuti: {{searchByTermResults.length}}</div> -->
             <ul class="results">
-                <li class="movie-container" v-for="movie in searchByTermResults">
+                <li class="movie-container" v-for="movie in searchByTermResults" @mouseenter="displayMoreInfo(movie)">
                         <!-- <img class="poster" :src="'https://image.tmdb.org/t/p/w185/' + movie.poster_path" alt="cover"> -->
                         <img class="poster" :src="movie.poster_path.includes('img-fallback') ? (movie.poster_path) : ('https://image.tmdb.org/t/p/w185/' + movie.poster_path)" alt="cover">
 
@@ -33,11 +33,15 @@
                             <div class="title" v-if="movie.title"><strong>Titolo:</strong> {{movie.title}}</div>
                             <div class="title" v-else-if="movie.name"><strong>Titolo:</strong> {{movie.name}}</div>
                             <!-- /title -->
-
+                            
                             <div class="original" v-if="displayOriginalTitle(movie)">
                                 <strong>Titolo originale:</strong>{{movie.original_title ? movie.original_title : movie.original_name}}
                             </div>
-    
+                            
+                            <div class="cast">
+                                <strong>Cast: </strong>{{cast}}
+                            </div>
+
                             <!-- language -->
                             <div class="language">
                                 <strong>Lingua: </strong>
@@ -54,8 +58,8 @@
 
                             <div class="genre">
                                 <strong>Genere: </strong>
-                                <span v-if="movie.genre_ids.length === 1">{{movie.genre_ids.join("")}}</span>
-                                <span v-else>{{movie.genre_ids.join(", ")}}</span>
+                                <span>{{}}</span>
+                                <!-- <span>{{displayGenres(movie)}}</span> -->
                             </div>
 
                             <div class="description">
