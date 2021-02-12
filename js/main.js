@@ -32,6 +32,23 @@ new Vue({
             })
 
         },
+
+        // render a gb flag when the value passed is
+        displayGBFlag(movie) {
+            return `./flags/${(movie.original_language === 'en' ? 'gb' : movie.original_language)}.svg`;
+        },
+
+        // display original title only if it is different from the title (both movies and series)
+        displayOriginalTitle(movie) {
+            return movie.original_title !== movie.title || movie.original_name !== movie.name;
+        },
+
+        // display filled or empty stars depending on the movie score
+        displayStars(star, movie) {
+            return `vote fa-star ${star <= Math.ceil(movie.vote_average / 2) ? 'fas' : 'far'}`;
+        },
     },
+    filters: {
+    }
 
 })

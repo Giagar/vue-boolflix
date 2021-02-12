@@ -34,21 +34,22 @@
                             <div class="title" v-else-if="movie.name"><strong>Titolo:</strong> {{movie.name}}</div>
                             <!-- /title -->
 
-                            <div class="original" v-if="movie.original_title !== movie.title || movie.original_name !== movie.name">
+                            <div class="original" v-if="displayOriginalTitle(movie)">
                                 <strong>Titolo originale:</strong>{{movie.original_title ? movie.original_title : movie.original_name}}
                             </div>
     
                             <!-- language -->
                             <div class="language">
                                 <strong>Lingua: </strong>
-                                <img class="flag" :src="'./flags/' + (movie.original_language === 'en' ? 'gb' : movie.original_language) + '.svg'" :alt="movie.original_language">
+                                <img class="flag" :src="displayGBFlag(movie)" :alt="movie.original_language">
+                                <!-- <img class="flag" :src="'./flags/' + (movie.original_language === 'en' ? 'gb' : movie.original_language) + '.svg'" :alt="movie.original_language"> -->
                                 <!-- <span :class="'flag flag-icon flag-icon-' + (movie.original_language === 'en' ? 'gb' : movie.original_language)">{{movie.original_language}}</span> -->
                             </div>
 <!-- ?? come posso verificare che src sia falsa? cioè che movie.original_language nn corrisponda a nessun percorso esistente ?? -->
                             <!-- /language -->
     
                             <div class="score-container">
-                                <strong>Voto: </strong><i v-for="star in 5" :class="'vote fa-star ' + (star <= Math.ceil(movie.vote_average / 2) ? 'fas' : 'far')"></i>
+                                <strong>Voto: </strong><i v-for="star in 5" :class="displayStars(star, movie)"></i>
                             </div>
 
                             <div class="description">
