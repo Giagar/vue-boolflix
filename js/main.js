@@ -47,6 +47,7 @@ new Vue({
         displayStars(star, movie) {
             return `vote fa-star ${star <= Math.ceil(movie.vote_average / 2) ? 'fas' : 'far'}`;
         },
+
     },
     filters: {
     }

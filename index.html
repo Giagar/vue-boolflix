@@ -52,6 +52,12 @@
                                 <strong>Voto: </strong><i v-for="star in 5" :class="displayStars(star, movie)"></i>
                             </div>
 
+                            <div class="genre">
+                                <strong>Genere: </strong>
+                                <span v-if="movie.genre_ids.length === 1">{{movie.genre_ids.join("")}}</span>
+                                <span v-else>{{movie.genre_ids.join(", ")}}</span>
+                            </div>
+
                             <div class="description">
                                 <strong>Overview: </strong>{{movie.overview}}
                             </div>
