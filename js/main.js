@@ -58,7 +58,7 @@ new Vue({
                 // checking for missing poster images and setting a default cover img
                 resAll.forEach(obj => {
 // ?? va bene passare true per nn fargli fare niente - (l'assegnazione funziona, ma il percorso è sbagliato) ?? 
-                    obj.poster_path ? true : obj.poster_path = "./img-fallback/default-cover.jpg"
+                    obj.poster_path ? true : obj.poster_path = "./img-fallback/default-cover.png"
                 });
 
                 this.searchByTermResults = resAll;
@@ -87,6 +87,8 @@ new Vue({
 
         // get more data: actors and genre (max: 2 items)
         displayMoreInfo(movie) {
+
+            this.cast = "Loading..."
 
             // get actors
             axios
