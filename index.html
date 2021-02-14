@@ -35,6 +35,9 @@
                         
                     <img class="poster" :src="movie.poster_path.includes('img-fallback') ? (movie.poster_path) : ('https://image.tmdb.org/t/p/w185/' + movie.poster_path)" alt="cover">
 
+                    <div class="categoryTag" v-if="movie.category === 'movie'">Movie</div>
+                    <div class="categoryTag" v-else-if="movie.category === 'tv'">Tv Series</div>
+
                     <div class="movie-data">
                         
                         <!-- !!!! title  e original presentano la condizione perché le alcune proprietà dei movie hanno nomi diversi rispetto a quelle corrispondenti delle serie tv !!!! -->
@@ -71,7 +74,7 @@
                             <strong>Overview: </strong>{{movie.overview}}
                         </div>
                     </div>
-                    
+
                 </li>
             </ul>
         </main>

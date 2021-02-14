@@ -1,10 +1,11 @@
 /* TO DO
+_sort out overview length
+
 _Refactoring
 __delete all temporary stuff (include TEMP in the name)
 
 _check all notes (?? and !!)
 
-_add a tag on each image to say if it a movie or a series
 _tackle the scrollbar x always present
 -add a filters reset button
 
