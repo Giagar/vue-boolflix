@@ -16,18 +16,23 @@
     <div id="root">
         <header>
             <span class="logo">BOOLFLIX</span>
-            <select name="genres" id="genres" v-model="selectedGenre" @change="checkTEMP">
-                <option value="">-- Select a genre --</option>
-                <option v-for="genre in allGenres" >{{genre.name}}</option>
-            </select>
+            <div class="filters">
+                <select name="genres" id="genres" v-model="selectedGenre" @change="checkTEMP">
+                    <option value="">-- Select a genre --</option>
+                    <option v-for="genre in allGenres" >{{genre.name}}</option>
+                </select>
+                <select name="categories" id="categories" v-model="selectedCategory" @change="checkTEMP">
+                    <option value="">-- Select the category --</option>
+                    <option v-for="category in categories" >{{category}}</option>
+                </select>
+            </div>
             <input type="text" name="searchByTerm" id="searchByTerm" placeholder="Search..." v-model="searchByTerm" @keyup.enter="queryDatabase">
         </header>
 
         <main>
             <!-- <div class="quantity" v-if="searchByTermResults !== ''">Numero di risultati ottenuti: {{searchByTermResults.length}}</div> -->
             <ul class="results">
-                <li class="movie-container" v-for="movie in searchByTermResults" v-if="movie.genre_ids.includes(selectedGenre) || selectedGenre === ''">
-                <!-- <li class="movie-container" v-for="movie in searchByTermResults" v-if="movie.genre_ids.includes(selectedGenre) || selectedGenre === ''" @mouseenter="displayMoreInfo(movie)"> -->
+                <li class="movie-container" v-for="movie in searchByTermResults" v-if="(movie.genre_ids.includes(selectedGenre) || selectedGenre === '') && (movie.category === selectedCategory || selectedCategory === '')" @mouseenter="displayMoreInfo(movie)">
                         <!-- <img class="poster" :src="'https://image.tmdb.org/t/p/w185/' + movie.poster_path" alt="cover"> -->
                         <img class="poster" :src="movie.poster_path.includes('img-fallback') ? (movie.poster_path) : ('https://image.tmdb.org/t/p/w185/' + movie.poster_path)" alt="cover">
 

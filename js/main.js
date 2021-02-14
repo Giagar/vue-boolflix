@@ -24,6 +24,8 @@ new Vue({
         tvGenresList: "",
         allGenres: [],
         selectedGenre: "",
+        categories:["movie", "tv"],
+        selectedCategory: "",
         // flag: "",
     },
 
@@ -54,7 +56,13 @@ new Vue({
 
                 // genres: from codes to names
                 resAll.forEach(movie => {
-                    movie.genre_ids = movie.genre_ids.map((genreCodes, index, array) => {
+
+                    // bonus: adding the prop category to select between movies and tv series
+                    movie.category = movie.title ? "movie" : "tv";
+                    console.log("movie", movie.category);
+                    // _/bonus
+
+                    movie.genre_ids = movie.genre_ids.map((genreCodes) => {
                         if(movie.genre_ids === []) {
                             movie.genre_ids = "No genre specified";
                         } else {
@@ -121,7 +129,7 @@ new Vue({
         },
 
         checkTEMP() {
-            console.log(this.selectedGenre);
+            console.log("selection", this.selectedGenre, this.selectedCategory);
         },
 
 // !! cut the results (strings) to a max length !!
