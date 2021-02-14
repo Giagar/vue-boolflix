@@ -30,52 +30,48 @@
         </header>
 
         <main>
-            <!-- <div class="quantity" v-if="searchByTermResults !== ''">Numero di risultati ottenuti: {{searchByTermResults.length}}</div> -->
             <ul class="results">
                 <li class="movie-container" v-for="movie in searchByTermResults" v-if="(movie.genre_ids.includes(selectedGenre) || selectedGenre === '') && (movie.category === selectedCategory || selectedCategory === '')" @mouseenter="displayMoreInfo(movie)">
-                        <!-- <img class="poster" :src="'https://image.tmdb.org/t/p/w185/' + movie.poster_path" alt="cover"> -->
-                        <img class="poster" :src="movie.poster_path.includes('img-fallback') ? (movie.poster_path) : ('https://image.tmdb.org/t/p/w185/' + movie.poster_path)" alt="cover">
+                        
+                    <img class="poster" :src="movie.poster_path.includes('img-fallback') ? (movie.poster_path) : ('https://image.tmdb.org/t/p/w185/' + movie.poster_path)" alt="cover">
 
-                        <div class="movie-data">
-                            <!-- !!!! title  e original presentano la condizione perché le alcune proprietà dei movie hanno nomi diversi rispetto a quelle corrispondenti delle serie tv !!!! -->
-
-                            <!-- title -->
-                            <div class="title" v-if="movie.title"><strong>Titolo:</strong> {{movie.title}}</div>
-                            <div class="title" v-else-if="movie.name"><strong>Titolo:</strong> {{movie.name}}</div>
-                            <!-- /title -->
-                            
-                            <div class="original" v-if="displayOriginalTitle(movie)">
-                                <strong>Titolo originale:</strong>{{movie.original_title ? movie.original_title : movie.original_name}}
-                            </div>
-                            
-                            <div class="cast">
-                                <strong>Cast: </strong>{{cast}}
-                            </div>
-
-                            <!-- language -->
-                            <div class="language">
-                                <strong>Lingua: </strong>
-                                <img class="flag" :src="displayGBFlag(movie)" :alt="movie.original_language">
-                                <!-- <img class="flag" :src="'./flags/' + (movie.original_language === 'en' ? 'gb' : movie.original_language) + '.svg'" :alt="movie.original_language"> -->
-                                <!-- <span :class="'flag flag-icon flag-icon-' + (movie.original_language === 'en' ? 'gb' : movie.original_language)">{{movie.original_language}}</span> -->
-                            </div>
-<!-- ?? come posso verificare che src sia falsa? cioè che movie.original_language nn corrisponda a nessun percorso esistente ?? -->
-                            <!-- /language -->
-    
-                            <div class="score-container">
-                                <strong>Voto: </strong><i v-for="star in 5" :class="displayStars(star, movie)"></i>
-                            </div>
-
-                            <div class="genre">
-                                <strong>Genere: </strong>
-                                <span>{{movie.genre_ids.join(", ")}}</span>
-                                <!-- <span>{{displayGenres(movie)}}</span> -->
-                            </div>
-
-                            <div class="description">
-                                <strong>Overview: </strong>{{movie.overview}}
-                            </div>
+                    <div class="movie-data">
+                        
+                        <!-- !!!! title  e original presentano la condizione perché le alcune proprietà dei movie hanno nomi diversi rispetto a quelle corrispondenti delle serie tv !!!! -->
+                        <!-- title -->
+                        <div class="title" v-if="movie.title"><strong>Titolo:</strong> {{movie.title}}</div>
+                        <div class="title" v-else-if="movie.name"><strong>Titolo:</strong> {{movie.name}}</div>
+                        <!-- /title -->
+                        
+                        <div class="original" v-if="displayOriginalTitle(movie)">
+                            <strong>Titolo originale:</strong>{{movie.original_title ? movie.original_title : movie.original_name}}
                         </div>
+                        
+                        <div class="cast">
+                            <strong>Cast: </strong>{{cast}}
+                        </div>
+
+                        <!-- language -->
+                        <div class="language">
+                            <strong>Lingua: </strong>
+                            <img class="flag" :src="displayGBFlag(movie)" :alt="movie.original_language">
+                        </div>
+                        <!-- /language -->
+
+                        <div class="score-container">
+                            <strong>Voto: </strong><i v-for="star in 5" :class="displayStars(star, movie)"></i>
+                        </div>
+
+                        <div class="genre">
+                            <strong>Genere: </strong>
+                            <span>{{movie.genre_ids.join(", ")}}</span>
+                        </div>
+
+                        <div class="description">
+                            <strong>Overview: </strong>{{movie.overview}}
+                        </div>
+                    </div>
+                    
                 </li>
             </ul>
         </main>

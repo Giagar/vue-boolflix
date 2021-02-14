@@ -1,98 +1,97 @@
 /* COMMONS & UTILITIES */
 html {
-    font-family: Arial, Helvetica, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-* {box-sizing: border-box; margin: 0; padding: 0;}
-
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
 /* STYLE */
 /* _header */
 header {
-    height: 70px;
-    /* line-height: 70px; */
-    background-color: hsl(0, 0%, 0%);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 25px;
+  height: 70px;
+  background-color: hsl(0, 0%, 0%);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 25px;
 }
 
 .logo {
-    color: red;
+  color: red;
 }
 
 header input {
-    padding: 4px 5px;
+  padding: 4px 5px;
 }
 
 /* _main */
 main {
-    width: 100vw;
-    background-color: #434343;
-    min-height: calc(100vh - 70px);
-    overflow-x: scroll; /* solo per scorrimento orizzontale */
+  width: 100vw;
+  background-color: #434343;
+  min-height: calc(100vh - 70px);
+  overflow-x: scroll; /* solo per scorrimento orizzontale */
 }
 
 main ul.results {
-    list-style: none;
-    width: 100%;
-    margin: 0 auto;
-    display: flex;
-    justify-content: flex-start;
-    /* flex-wrap: wrap; // solo per scorrimento verticale */ 
-    padding: 5px 20px;
+  list-style: none;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: flex-start;
+  /* flex-wrap: wrap; // solo per scorrimento verticale */
+  padding: 5px 20px;
 }
 
 main .movie-container {
-    position: relative;
-    margin: 5px;
-    height: 280px;
-    width: 187px;
-    border: 1px solid #D6D6D6;
+  position: relative;
+  margin: 5px;
+  height: 280px;
+  width: 187px;
+  border: 1px solid #d6d6d6;
 }
 
 main .movie-container img.poster {
-    z-index: 0;
-    height: 278px;
-    width: 185px;
+  z-index: 0;
+  height: 278px;
+  width: 185px;
 }
 
 main .movie-container .movie-data {
-    height: 278px;
-    width: 185px;
-    position: absolute;
-    /* z-index: 1; */
-    top: 0;
-    left: 0;
-    background-color: hsl(0, 0%, 0%);
-    color: white;
-    display: none;
-    /* display: block; */
-/* ?? nn rispetta padding bottom e .description arriva fino alla fine di .movie-data ?? */
-    padding: 25px 10px;
-    overflow-y: hidden;
+  height: 278px;
+  width: 185px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: hsl(0, 0%, 0%);
+  color: white;
+  display: none;
+  /* ?? nn rispetta padding bottom e .description arriva fino alla fine di .movie-data ?? */
+  padding: 25px 10px;
+  overflow-y: hidden;
 }
 
 main .movie-container:hover .movie-data {
-    display: block;
-    overflow-y: hidden;
+  display: block;
+  overflow-y: hidden;
 }
 
 main .movie-container .movie-data > div {
-    line-height: 1.4;
+  line-height: 1.4;
 }
 
 main .movie-container .movie-data .score-container i {
-    color: #FFBD00;
+  color: #ffbd00;
 }
 
 main .movie-container .movie-data .description {
-    /* max-height: 100px; */
-    outline: 1px dotted lightblue;
-    overflow-y: hidden;
+  outline: 1px dotted lightblue;
+  overflow-y: hidden;
 }
 
 .language .flag {
-    width: 15px;
+  width: 15px;
 }
