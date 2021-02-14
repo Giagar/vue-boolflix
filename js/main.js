@@ -144,6 +144,13 @@ new Vue({
       console.log("selection", this.selectedGenre, this.selectedCategory);
     },
 
+    // cut the description if larger than a defined length and add ... at the end
+    displayDescription(str, maxLength) {
+      return str.length > maxLength ? 
+      str.slice(0, (maxLength - 3)) + "...":
+      str;
+    }
+
     // !! cut the results (strings) to a max length !!
   },
 
