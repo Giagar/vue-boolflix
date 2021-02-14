@@ -1,3 +1,16 @@
+/* TO DO
+_Refactoring
+__delete all temporary stuff (include TEMP in the name)
+
+_check all notes (?? and !!)
+
+_add a filter for movie / series
+_add a tag on each image to say if it a movie or a series
+_tackle the scrollbar x always present
+
+_?? move the filters creation before the query ??
+*/
+
 new Vue({
     el: "#root",
 
@@ -9,6 +22,8 @@ new Vue({
         cast: "",
         movieGenresList: "",
         tvGenresList: "",
+        allGenres: [],
+        selectedGenre: "",
         // flag: "",
     },
 
@@ -29,9 +44,15 @@ new Vue({
                 
                 let resAll = resMovie.data.results.concat(resTv.data.results); // array
                 
-                // genres: from codes to names
-                let resAllGenres = [...resMovieGenresList.data.genres, ...resTvGenresList.data.genres];
 
+                let resAllGenres = [...resMovieGenresList.data.genres, ...resTvGenresList.data.genres];
+                
+                // genres select
+                this.allGenres = [...resAllGenres];
+
+// ?? check for duplicates ??
+
+                // genres: from codes to names
                 resAll.forEach(movie => {
                     movie.genre_ids = movie.genre_ids.map((genreCodes, index, array) => {
                         if(movie.genre_ids === []) {
@@ -97,6 +118,10 @@ new Vue({
                 res = res.data.cast;
                 this.cast = res.map(actor => actor.name).slice(0, 2).join(", ")
             })
+        },
+
+        checkTEMP() {
+            console.log(this.selectedGenre);
         },
 
 // !! cut the results (strings) to a max length !!
