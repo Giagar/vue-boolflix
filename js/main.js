@@ -1,9 +1,6 @@
 /* TO DO
 _check all notes (?? and !!)
 
-_tackle the scrollbar x always present
--add a filters reset button
-
 _?? move the filters creation before the query ??
 */
 
@@ -11,6 +8,9 @@ new Vue({
   el: "#root",
 
   data: {
+    apiKey: "ce3b6870fdfccf78b80dcdd8f1af7e7c",
+    queryValidation: {value: false, errorMessage: ""},
+
     searchByTerm: "",
     searchByTermResults: "",
 
@@ -24,16 +24,46 @@ new Vue({
 
   methods: {
     queryDatabase() {
+      // resetting in order to avoid ghosting in certain cases of consequent multiple queries
+      this.searchByTermResults = "";
+
+      // validating the input: is it empty? Does it start with a space?
+      this.searchByTerm === "" || /^\s+/.test(this.searchByTerm) ? (
+        this.queryValidation.value = false, 
+        this.queryValidation.errorMessage = "Inserire un termine di ricerca"
+        ) : (
+        this.queryValidation.value = true, 
+        this.queryValidation.errorMessage = ""
+      )
+
       // retrieving data from the database
       axios
         .all([
           axios.get(
             "https://api.themoviedb.org/3/search/movie?api_key=ce3b6870fdfccf78b80dcdd8f1af7e7c&query=" +
               this.searchByTerm
+
+            //   "https://api.themoviedb.org/3/",
+            // {
+            //   params: {
+            //     query: "search",
+            //     category: "movie",
+            //     api_key: "ce3b6870fdfccf78b80dcdd8f1af7e7c",
+            //     searchQuery: this.searchByTerm,
+            //   }
+            // }
           ),
           axios.get(
-            "https://api.themoviedb.org/3/search/tv?api_key=ce3b6870fdfccf78b80dcdd8f1af7e7c&query=" +
-              this.searchByTerm
+            // "https://api.themoviedb.org/3/search/tv?api_key=&query=" +
+            //   this.searchByTerm
+
+            "https://api.themoviedb.org/3/search/tv",
+            {
+              params: {
+                api_key: this.apiKey,
+                query: this.searchByTerm,
+              },
+            }
           ),
 
           // get movie genres list
@@ -47,6 +77,15 @@ new Vue({
         ])
         .then(([resMovie, resTv, resMovieGenresList, resTvGenresList]) => {
           let resAll = resMovie.data.results.concat(resTv.data.results); // array
+
+          // validating the response: do we get a response for the query?
+          resAll.length === 0 ? (
+              this.queryValidation.value = false, 
+              this.queryValidation.errorMessage = "Nessun risultato per il termine di ricerca"
+              ) : (
+              this.queryValidation.value = true, 
+              this.queryValidation.errorMessage = ""
+            )
 
           let resAllGenres = [
             ...resMovieGenresList.data.genres,
@@ -90,6 +129,13 @@ new Vue({
 
           // empty the search field
           this.searchByTerm = "";
+        })
+        // cathcing errors different from 422 (query = "")
+        .catch(err => {
+          if(err.response.status !== 200 && err.response.status !== 422) {
+            this.queryValidation.value = false,
+            this.queryValidation.errorMessage = "Abbiamo riscontrato un problema tecnico. Riprova più tardi."
+          }
         });
     },
 
@@ -137,9 +183,13 @@ new Vue({
 
     // cut the description if larger than a defined length and add ... at the end
     displayDescription(str, maxLength) {
-      return str.length > maxLength ? 
-      str.slice(0, (maxLength - 3)) + "...":
-      str;
+      return str.length > maxLength ? str.slice(0, maxLength - 3) + "..." : str;
+    },
+
+    // reset filters
+    resetFilters() {
+      this.selectedGenre = "";
+      this.selectedCategory = "";
     }
   },
 

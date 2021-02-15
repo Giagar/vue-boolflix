@@ -25,12 +25,14 @@
                     <option value="">-- Select a category --</option>
                     <option v-for="category in categories" >{{category}}</option>
                 </select>
+                <button class="resetFilters" @click="resetFilters">Reset</button>
             </div>
             <input type="text" name="searchByTerm" id="searchByTerm" placeholder="Search..." v-model="searchByTerm" @keyup.enter="queryDatabase">
         </header>
 
         <main>
-            <ul class="results">
+            <div class="errorMessage" v-if="queryValidation.value === false">{{queryValidation.errorMessage}}</div>
+            <ul class="results" v-else-if="queryValidation.value === true">
                 <li class="movie-container" v-for="movie in searchByTermResults" v-if="(movie.genre_ids.includes(selectedGenre) || selectedGenre === '') && (movie.category === selectedCategory || selectedCategory === '')" @mouseenter="displayMoreInfo(movie)">
                         
                     <img class="poster" :src="movie.poster_path.includes('img-fallback') ? (movie.poster_path) : ('https://image.tmdb.org/t/p/w342/' + movie.poster_path)" alt="cover">

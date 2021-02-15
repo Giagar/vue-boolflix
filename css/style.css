@@ -22,10 +22,25 @@ header {
 
 .logo {
   color: red;
+  font-size: 22px;
 }
 
 header input {
   padding: 4px 5px;
+}
+
+header .filters select {
+  height: 20px;
+}
+
+header .filters button.resetFilters {
+  width: 70px;
+  text-align: center;
+  color: white;
+  background-color: red;
+  border: none;
+  height: 20px;
+  line-height: 20px;
 }
 
 /* _main */
@@ -34,6 +49,13 @@ main {
   background-color: #434343;
   min-height: calc(100vh - 70px);
   overflow-x: scroll; /* solo per scorrimento orizzontale */
+}
+
+main .errorMessage {
+  margin: 50px auto;
+  color: white;
+  font-size: 22px;
+  text-align: center;
 }
 
 main ul.results {
