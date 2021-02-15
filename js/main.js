@@ -9,6 +9,7 @@ new Vue({
 
   data: {
     apiKey: "ce3b6870fdfccf78b80dcdd8f1af7e7c",
+    baseUrl: "https://api.themoviedb.org/3/",
     queryValidation: {value: false, errorMessage: ""},
 
     searchByTerm: "",
@@ -40,24 +41,16 @@ new Vue({
       axios
         .all([
           axios.get(
-            "https://api.themoviedb.org/3/search/movie?api_key=ce3b6870fdfccf78b80dcdd8f1af7e7c&query=" +
-              this.searchByTerm
-
-            //   "https://api.themoviedb.org/3/",
-            // {
-            //   params: {
-            //     query: "search",
-            //     category: "movie",
-            //     api_key: "ce3b6870fdfccf78b80dcdd8f1af7e7c",
-            //     searchQuery: this.searchByTerm,
-            //   }
-            // }
+              `${this.baseUrl}search/movie?`, 
+              {
+                params: {
+                  api_key: this.apiKey,
+                  query: this.searchByTerm,
+                }
+              }
           ),
           axios.get(
-            // "https://api.themoviedb.org/3/search/tv?api_key=&query=" +
-            //   this.searchByTerm
-
-            "https://api.themoviedb.org/3/search/tv",
+            `${this.baseUrl}search/tv?`, 
             {
               params: {
                 api_key: this.apiKey,
@@ -68,11 +61,21 @@ new Vue({
 
           // get movie genres list
           axios.get(
-            "https://api.themoviedb.org/3/genre/movie/list?api_key=ce3b6870fdfccf78b80dcdd8f1af7e7c&language=en-US"
+            `${this.baseUrl}genre/movie/list?`, 
+            {
+              params: {
+                api_key: this.apiKey,
+              }
+            }
           ),
           // get series genres list
           axios.get(
-            "https://api.themoviedb.org/3/genre/tv/list?api_key=ce3b6870fdfccf78b80dcdd8f1af7e7c&language=en-US"
+            `${this.baseUrl}genre/tv/list?`, 
+            {
+              params: {
+                api_key: this.apiKey,
+              }
+            }
           ),
         ])
         .then(([resMovie, resTv, resMovieGenresList, resTvGenresList]) => {
