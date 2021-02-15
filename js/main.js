@@ -1,9 +1,3 @@
-/* TO DO
-_check all notes (?? and !!)
-
-_?? move the filters creation before the query ??
-*/
-
 new Vue({
   el: "#root",
 
@@ -98,8 +92,6 @@ new Vue({
           // genres select
           this.allGenres = [...resAllGenres];
 
-          // ?? check for duplicates ??
-
           // genres: from codes to names
           resAll.forEach((movie) => {
             // bonus: adding the prop category to select between movies and tv series
@@ -122,7 +114,6 @@ new Vue({
 
           // checking for missing poster images and setting a default cover img
           resAll.forEach((obj) => {
-            // ?? va bene passare true per nn fargli fare niente - (l'assegnazione funziona, ma il percorso è sbagliato) ??
             obj.poster_path
               ? true
               : (obj.poster_path = "./img-fallback/default-cover.png");
@@ -171,9 +162,12 @@ new Vue({
       // get actors
       axios
         .get(
-          "https://api.themoviedb.org/3/movie/" +
-            movie.id +
-            "/credits?api_key=ce3b6870fdfccf78b80dcdd8f1af7e7c"
+          `https://api.themoviedb.org/3/movie/${movie.id}/credits?`,
+          {
+            params: {
+              api_key: this.apiKey,
+            }
+          }
         )
         .then((res) => {
           res = res.data.cast;
@@ -194,9 +188,5 @@ new Vue({
       this.selectedGenre = "";
       this.selectedCategory = "";
     }
-  },
-
-  mounted: function () {
-    // ?? get movie's genres list and actors here ??
   },
 });
