@@ -49,22 +49,31 @@ main ul.results {
 main .movie-container {
   position: relative;
   margin: 5px;
-  height: 280px;
-  width: 187px;
+  height: 515px;
+  width: 344px;
   border: 1px solid #d6d6d6;
 }
 
 main .movie-container img.poster {
   z-index: 0;
-  height: 278px;
-  width: 185px;
+  height: 513px;
+  width: 342px;
+}
+
+main .movie-container .categoryTagContainer {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  overflow: hidden;
 }
 
 main .movie-container .categoryTag {
     position: absolute;
-    top: 10px;
-    right: 0px;
-    width: 100px;
+    top: 25px;
+    right: -30px;
+    width: 140px;
     height: 30px;
     line-height: 30px;
     text-align: center;
@@ -73,20 +82,20 @@ main .movie-container .categoryTag {
     font-size: 14px;
     text-transform: uppercase;
     letter-spacing: 1.2px;
-    background-color: rgba(255, 0, 0, 0.5);
+    background-color: rgba(255, 0, 0, 0.7);
+    transform: rotate(45deg);
 }
 
 main .movie-container .movie-data {
-  height: 278px;
-  width: 185px;
+  height: 513px;
+  width: 342px;
   position: absolute;
   top: 0;
   left: 0;
   background-color: hsl(0, 0%, 0%);
   color: white;
   display: none;
-  /* ?? nn rispetta padding bottom e .description arriva fino alla fine di .movie-data ?? */
-  padding: 25px 10px;
+  padding: 35px 20px;
   overflow-y: hidden;
 }
 
@@ -104,7 +113,6 @@ main .movie-container .movie-data .score-container i {
 }
 
 main .movie-container .movie-data .description {
-  outline: 1px dotted lightblue;
   overflow-y: hidden;
 }
 

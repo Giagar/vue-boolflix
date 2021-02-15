@@ -17,11 +17,11 @@
         <header>
             <span class="logo">BOOLFLIX</span>
             <div class="filters">
-                <select name="genres" id="genres" v-model="selectedGenre" @change="checkTEMP">
+                <select name="genres" id="genres" v-model="selectedGenre">
                     <option value="">-- Select a genre --</option>
                     <option v-for="genre in allGenres" >{{genre.name}}</option>
                 </select>
-                <select name="categories" id="categories" v-model="selectedCategory" @change="checkTEMP">
+                <select name="categories" id="categories" v-model="selectedCategory">
                     <option value="">-- Select the category --</option>
                     <option v-for="category in categories" >{{category}}</option>
                 </select>
@@ -33,10 +33,12 @@
             <ul class="results">
                 <li class="movie-container" v-for="movie in searchByTermResults" v-if="(movie.genre_ids.includes(selectedGenre) || selectedGenre === '') && (movie.category === selectedCategory || selectedCategory === '')" @mouseenter="displayMoreInfo(movie)">
                         
-                    <img class="poster" :src="movie.poster_path.includes('img-fallback') ? (movie.poster_path) : ('https://image.tmdb.org/t/p/w185/' + movie.poster_path)" alt="cover">
+                    <img class="poster" :src="movie.poster_path.includes('img-fallback') ? (movie.poster_path) : ('https://image.tmdb.org/t/p/w342/' + movie.poster_path)" alt="cover">
 
-                    <div class="categoryTag" v-if="movie.category === 'movie'">Movie</div>
-                    <div class="categoryTag" v-else-if="movie.category === 'tv'">Tv Series</div>
+                    <div class="categoryTagContainer">
+                        <div class="categoryTag" v-if="movie.category === 'movie'">Movie</div>
+                        <div class="categoryTag" v-else-if="movie.category === 'tv'">Tv Series</div>
+                    </div>
 
                     <div class="movie-data">
                         
@@ -71,7 +73,7 @@
                         </div>
 
                         <div class="description">
-                            <strong>Overview: </strong>{{displayDescription(movie.overview, 30)}}
+                            <strong>Overview: </strong>{{displayDescription(movie.overview, 150)}}
                         </div>
                     </div>
 

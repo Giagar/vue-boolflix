@@ -1,9 +1,4 @@
 /* TO DO
-_sort out overview length
-
-_Refactoring
-__delete all temporary stuff (include TEMP in the name)
-
 _check all notes (?? and !!)
 
 _tackle the scrollbar x always present
@@ -135,13 +130,9 @@ new Vue({
           res = res.data.cast;
           this.cast = res
             .map((actor) => actor.name)
-            .slice(0, 2)
+            .slice(0, 5) // number of actors displayed
             .join(", ");
         });
-    },
-
-    checkTEMP() {
-      console.log("selection", this.selectedGenre, this.selectedCategory);
     },
 
     // cut the description if larger than a defined length and add ... at the end
@@ -150,8 +141,6 @@ new Vue({
       str.slice(0, (maxLength - 3)) + "...":
       str;
     }
-
-    // !! cut the results (strings) to a max length !!
   },
 
   mounted: function () {
