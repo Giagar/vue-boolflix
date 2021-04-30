@@ -25,6 +25,9 @@ new Vue({
       // resetting in order to avoid ghosting in certain cases of consequent multiple queries
       this.searchByTermResults = "";
 
+      // search is active
+      this.searchIsActive = true;
+
       // validating the input: is it empty? Does it start with a space?
       this.searchByTerm === "" || /^\s+/.test(this.searchByTerm) ? (
         this.queryValidation.value = false, 

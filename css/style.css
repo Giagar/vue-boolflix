@@ -49,21 +49,22 @@ main {
   background-color: #434343;
   min-height: calc(100vh - 70px) !important;
   overflow-x: scroll; /* solo per scorrimento orizzontale */
+  position: relative;
 }
 
 main .initial-message {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  /* height: calc(100vh - 70px); */
+  position: absolute;
+  top: calc(50vh - 70px);
+  left: 50vw;
+  transform: translate(-50%, -50%);
   font-weight: 700;
   color: #2c2c2c;
   padding: 0 25px;
+  text-align: center;
 }
 
 main .initial-message span {
   font-size: 60px;
-  text-align: center;
 }
 
 main .errorMessage {
@@ -79,7 +80,7 @@ main ul.results {
   margin: 0 auto;
   display: flex;
   justify-content: flex-start;
-  /* flex-wrap: wrap; // solo per scorrimento verticale */
+  flex-wrap: wrap; /* vertical */
   padding: 5px 20px;
 }
 
