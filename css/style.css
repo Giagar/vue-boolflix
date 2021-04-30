@@ -25,22 +25,38 @@ header {
   font-size: 22px;
 }
 
+header .search-container {
+  display: flex;
+  column-gap: 10px;
+}
+
 header input {
   padding: 4px 5px;
+  border: none;
+  border-radius: 2px;
+}
+
+header .filters {
+  display: flex;
+  align-items: center;
+  column-gap: 5px;
 }
 
 header .filters select {
   height: 20px;
+  border: none;
+  border-radius: 2px;
 }
 
 header .filters button.resetFilters {
-  width: 70px;
+  padding: 0 4px;
   text-align: center;
   color: white;
   background-color: red;
   border: none;
-  height: 20px;
-  line-height: 20px;
+  height: 25px;
+  line-height: 25px;
+  border-radius: 2px;
 }
 
 /* _main */
@@ -79,7 +95,7 @@ main ul.results {
   width: 100%;
   margin: 0 auto;
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   flex-wrap: wrap; /* vertical */
   padding: 5px 20px;
 }
@@ -156,4 +172,31 @@ main .movie-container .movie-data .description {
 
 .language .flag {
   width: 15px;
+}
+
+/* Media Queries */
+@media screen and (max-width: 768px) {
+  header {
+    height: 120px;
+  }
+
+  header .search-container {
+    flex-direction: column;
+  }
+
+  header .search-container, header .search-container .filters {
+    row-gap: 3px;
+  }
+
+  header .search-container .filters {
+    flex-direction: column;
+  }
+
+  header .search-container input, header .search-container select, header .search-container button {
+    width: 150px;
+  }
+
+  main {
+    height: calc(100vh - 120px);
+  }
 }

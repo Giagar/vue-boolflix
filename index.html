@@ -16,18 +16,20 @@
     <div id="root">
         <header>
             <span class="logo">BOOLFLIX</span>
-            <div class="filters" v-if="searchIsActive === true">
-                <select name="genres" id="genres" v-model="selectedGenre">
-                    <option value="">-- Select a genre --</option>
-                    <option v-for="genre in allGenres" >{{genre.name}}</option>
-                </select>
-                <select name="categories" id="categories" v-model="selectedCategory">
-                    <option value="">-- Select a category --</option>
-                    <option v-for="category in categories" >{{category}}</option>
-                </select>
-                <button class="resetFilters" @click="resetFilters">Reset</button>
+            <div class="search-container">
+                <input type="text" name="searchByTerm" id="searchByTerm" placeholder="Search..." v-model="searchByTerm" @keyup.enter="queryDatabase">
+                <div class="filters" v-if="searchIsActive === true">
+                    <select name="genres" id="genres" v-model="selectedGenre">
+                        <option value="">-- Select a genre --</option>
+                        <option v-for="genre in allGenres" >{{genre.name}}</option>
+                    </select>
+                    <select name="categories" id="categories" v-model="selectedCategory">
+                        <option value="">-- Select a category --</option>
+                        <option v-for="category in categories" >{{category}}</option>
+                    </select>
+                    <button class="resetFilters" @click="resetFilters">Reset Filters</button>
+                </div>
             </div>
-            <input type="text" name="searchByTerm" id="searchByTerm" placeholder="Search..." v-model="searchByTerm" @keyup.enter="queryDatabase">
         </header>
 
         <main>
