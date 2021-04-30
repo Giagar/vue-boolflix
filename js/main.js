@@ -9,6 +9,9 @@ new Vue({
     searchByTerm: "",
     searchByTermResults: "",
 
+    initialMessage: "Search for a movie",
+    searchIsActive: false, // flag var: when a search is done it becomes true
+
     // more info displayed
     cast: "",
     allGenres: [],
